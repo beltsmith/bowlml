@@ -5,13 +5,13 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github beltsmith/bowlml))
 
-(authors "Author Name")
+(authors "Alex Girdler")
 
-(maintainers "Maintainer Name")
+(maintainers "Alex Girdler")
 
-(license LICENSE)
+(license MIT)
 
 (documentation https://url/to/documentation)
 

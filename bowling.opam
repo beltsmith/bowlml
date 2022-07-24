@@ -2,13 +2,13 @@
 opam-version: "2.0"
 synopsis: "A short synopsis"
 description: "A longer description"
-maintainer: ["Maintainer Name"]
-authors: ["Author Name"]
-license: "LICENSE"
+maintainer: ["Alex Girdler"]
+authors: ["Alex Girdler"]
+license: "MIT"
 tags: ["topics" "to describe" "your" "project"]
-homepage: "https://github.com/username/reponame"
+homepage: "https://github.com/beltsmith/bowlml"
 doc: "https://url/to/documentation"
-bug-reports: "https://github.com/username/reponame/issues"
+bug-reports: "https://github.com/beltsmith/bowlml/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.2"}
