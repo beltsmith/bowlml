@@ -2,7 +2,6 @@ open Base
 
 type t = Frame.t list
 [@@deriving show]
-type in_progress = Input.t list
 
 let total_frames = 10
 (* type in_progress = t * Roll.t list *)
@@ -93,7 +92,7 @@ let running_score frames =
     | _ -> sums in
   acc [] scores |> List.rev
 
-let running_score_in_progress rolls =
+let running_score_of_inputs rolls =
   rolls
   |> frames
   |> running_score
