@@ -27,30 +27,25 @@ The primary module to interact with is [[file:lib/game.ml][Game]] however it gen
 ** repl
 To open a repl up run `dune utop` from the root of the project. Once there you can `open Bowling` to have access to the modules.
 #+begin_quote
-─( 21:46:57 )─< command 0 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+─( 21:50:04 )─< command 0 >───────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
 utop # open Bowling;;
-─( 21:46:57 )─< command 1 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
-utop # ["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"];;
-- : string list =
-["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"]
-─( 21:46:58 )─< command 2 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
-utop # ["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"] |> Input.parse_list;;
+─( 21:50:04 )─< command 1 >───────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # ["X"; "9"; "/"; "5"; "/"; "7"; "2"; "X"; "X";]
+|> Input.parse_list;;
 - : Input.t list =
-[Bowling.Input.String "X"; Bowling.Input.String "X"; Bowling.Input.String "X";
- Bowling.Input.String "X"; Bowling.Input.String "X"; Bowling.Input.String "X";
- Bowling.Input.String "X"; Bowling.Input.String "X"; Bowling.Input.String "X";
- Bowling.Input.String "X"; Bowling.Input.String "X"; Bowling.Input.String "X";
- Bowling.Input.String "X"]
-─( 21:47:04 )─< command 3 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
-utop # ["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"] |> Input.parse_list |> Game.score_inputs;;
-- : int option list =
-[Some 30; Some 30; Some 30; Some 30; Some 30; Some 30; Some 30; Some 30;
- Some 30; Some 30]
-─( 21:47:08 )─< command 4 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
-utop # ["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"] |> Input.parse_list |> Game.running_score_of_inputs;;
-- : int list = [30; 60; 90; 120; 150; 180; 210; 240; 270; 300]
-─( 21:47:14 )─< command 5 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
-utop #
+[Bowling.Input.String "X"; Bowling.Input.Int 9; Bowling.Input.String "/";
+ Bowling.Input.Int 5; Bowling.Input.String "/"; Bowling.Input.Int 7;
+ Bowling.Input.Int 2; Bowling.Input.String "X"; Bowling.Input.String "X"]
+─( 21:50:07 )─< command 2 >───────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # ["X"; "9"; "/"; "5"; "/"; "7"; "2"; "X"; "X";]
+|> Input.parse_list
+|> Game.score_inputs;;
+- : int option list = [Some 20; Some 15; Some 17; Some 9; None; None]
+─( 21:50:28 )─< command 3 >───────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # ["X"; "9"; "/"; "5"; "/"; "7"; "2"; "X"; "X";]
+|> Input.parse_list
+|> Game.running_score_of_inputs;;
+- : int list = [20; 35; 52; 61; 61; 61]
 #+end_quote
 
 ** tests
