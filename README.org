@@ -1,5 +1,6 @@
 #+title: Bowling
 
+* Preface
 The group has been asked to develop software to score bowling games.
 The hardware team is working on integrating with the pinsetter.
 The graphics team is hard at work on some cheesy 3D animations.
@@ -19,6 +20,40 @@ For example,
 When the second roll of the third frame comes in, all three frames should be returned, e.g. [4, 5, "X", 8, 1] would return [9, 19, 9]. (Note that these are the scores for the frames, not the running score).
 
 * Running
+** nota bene
+This project is written in OCaml and uses the [[https://dune.build/][dune build system]]. Prior to running the following commands ensure you have it installed.
+
+The primary module to interact with is [[file:lib/game.ml][Game]] however it generally expects arguments of type [[file:lib/input.ml][Input]], there is a helper function `Input.parse_list` you can use to convert a list of strings into inputs.
+** repl
+To open a repl up run `dune utop` from the root of the project. Once there you can `open Bowling` to have access to the modules.
+#+begin_quote
+─( 21:46:57 )─< command 0 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # open Bowling;;
+─( 21:46:57 )─< command 1 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # ["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"];;
+- : string list =
+["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"]
+─( 21:46:58 )─< command 2 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # ["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"] |> Input.parse_list;;
+- : Input.t list =
+[Bowling.Input.String "X"; Bowling.Input.String "X"; Bowling.Input.String "X";
+ Bowling.Input.String "X"; Bowling.Input.String "X"; Bowling.Input.String "X";
+ Bowling.Input.String "X"; Bowling.Input.String "X"; Bowling.Input.String "X";
+ Bowling.Input.String "X"; Bowling.Input.String "X"; Bowling.Input.String "X";
+ Bowling.Input.String "X"]
+─( 21:47:04 )─< command 3 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # ["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"] |> Input.parse_list |> Game.score_inputs;;
+- : int option list =
+[Some 30; Some 30; Some 30; Some 30; Some 30; Some 30; Some 30; Some 30;
+ Some 30; Some 30]
+─( 21:47:08 )─< command 4 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop # ["X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"; "X"] |> Input.parse_list |> Game.running_score_of_inputs;;
+- : int list = [30; 60; 90; 120; 150; 180; 210; 240; 270; 300]
+─( 21:47:14 )─< command 5 >───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────{ counter: 0 }─
+utop #
+#+end_quote
+
+** tests
 Tests use `ppx_expect` and reside in `tests/bowling_test.ml`
 #+begin_src shell
 dune build @runtest
