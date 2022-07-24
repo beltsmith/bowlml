@@ -1,0 +1,9 @@
+(library
+ (name bowling_test)
+ (libraries base bowling)
+ (inline_tests)
+ (preprocess (pps ppx_inline_test ppx_expect)))
+
+; (test (name bowling_test)
+; (preprocess (pps ppx_expect))
+; )

@@ -1,0 +1,4 @@
+(library
+ (name bowling)
+ (libraries base)
+ (preprocess (pps ppx_deriving.show)))
